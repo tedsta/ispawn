@@ -1,0 +1,31 @@
+[package]
+name = "ispawn"
+version = "0.0.2"
+edition = "2024"
+description = "Runtime-agnostic async spawners."
+repository = "https://github.com/tedsta/ispawn"
+documentation = "https://docs.rs/ispawn"
+keywords = ["async", "spawn", "dyn"]
+categories = ["asynchronous"]
+license = "MIT"
+readme = "README.md"
+
+[features]
+default = []
+async-executor = ["dep:async-executor"]
+dioxus = ["dep:dioxus"]
+futures-executor = ["dep:futures-executor", "dep:futures-task"]
+tokio = ["dep:tokio"]
+wasm-bindgen = ["dep:wasm-bindgen-futures"]
+
+[dependencies]
+async-executor = { version = "1", optional = true, features = ["static"] }
+dioxus = { version = "0.6", optional = true, default-features = false }
+futures-executor = { version = "0.3", optional = true }
+futures-task = { version = "0.3", optional = true }
+tokio = { version = "1", optional = true, default-features = false, features = ["rt"] }
+wasm-bindgen-futures = { version = "0.4", optional = true }
+
+[dev-dependencies]
+localq = "0.0.1"
+pollster = "0.4"
